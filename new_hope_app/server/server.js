@@ -6,11 +6,13 @@
 const cors = require('cors');
 const express = require("express"); 
 const mysql = require('mysql');
+const bodyParser = require("body-parser") 
 
 const PORT = 8080;
 const app = express(); 
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended:true})); 
 
 var conn = mysql.createConnection({
   host: 'mysql',
@@ -91,7 +93,6 @@ app.post("/new_homevisit", function(req, res) {
 }); 
 
 app.get("/dog_list", function(req, res) {
-    console.log('here')
     var query = `SELECT * from dogs`;
     
     conn.query(query,function (err, result) {
@@ -142,7 +143,7 @@ app.get("/homevisit_list", function(req, res) {
 app.post("/update_dog", function(req, res) {
     const parsedReq = JSON.parse(Object.keys(req.body)[0])
     var id = parsedReq.id;
-    var name = parsedReq.name;
+    var name = parsedReq.name || "";
     var age = parsedReq.age || 1;
     var breed = parsedReq.breed || "";
     var gender = parsedReq.gender || "";

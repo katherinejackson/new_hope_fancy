@@ -1,8 +1,5 @@
-
-
 const getAllDogs = async () => {
     try {
-    console.log('here1')
       const response = await fetch('http://localhost:8080/dog_list', { 
           method: 'GET',
           mode: 'cors',
@@ -31,17 +28,22 @@ const getAllDogs = async () => {
   }
   
   const updateDog = async (data) => {
-    const response = await fetch('http://localhost:8080/update_dog', {
-      method: 'POST', 
-      mode: 'cors', 
-      credentials: 'same-origin', 
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-      redirect: 'follow', 
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data), 
-    });
-  
-    return response; 
+    try {
+      const response = await fetch('http://localhost:8080/update_dog', {
+        method: 'POST', 
+        mode: 'cors', 
+        credentials: 'same-origin', 
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        redirect: 'follow', 
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(data), 
+      });
+    
+      return response; 
+    } catch (e) {
+      console.log(e)
+    }
+
   }
   
   export {addDog, getAllDogs, updateDog}

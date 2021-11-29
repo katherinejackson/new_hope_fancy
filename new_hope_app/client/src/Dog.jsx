@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { getAllDogs } from "./routes/dog";
+import { getAllDogs } from "./routes/dog.routes";
 
+import AddDog from "./AddDog"
+import UpdateDog from "./UpdateDog";
+import { dogStatus } from "./constants";
 
 const Dog = () => {
     const [dogList, setDogList] = useState([])
-    const [selected, setSelected] = useState([])
+    const [selected, setSelected] = useState(null)
+    const [showAddNew, setShowAddNew] = useState(false)
 
     useEffect(() => {
         getDogs()
@@ -33,7 +37,7 @@ const Dog = () => {
                             <th>Breed</th>
                             <th>Age</th>
                             <th>Gender</th>
-                            {/* <th>Status</th> */}
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,13 +48,23 @@ const Dog = () => {
                                 <td>{dog.breed}</td>
                                 <td>{dog.age}</td>
                                 <td>{dog.gender}</td>
-                                {/* <td>{dogStatus[dog.status]}</td> */}
+                                <td>{dogStatus[dog.status]}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
+
+                {selected !== null ? (
+                    <UpdateDog key={dogList[selected].id} dog={dogList[selected]} onUpdate={onUpdate}/>
+                ) : null}
             </div>
-            {/* <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Dog</button> */}
+            <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Dog</button>
+            {showAddNew ? (
+                <div>
+                    <AddDog />
+                    <button className="btn btn-danger m-2" onClick={() => setShowAddNew(false)}>Cancel</button>
+                </div>
+            ) : null}
         </div>
     )
 }

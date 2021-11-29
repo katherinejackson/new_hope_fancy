@@ -1,0 +1,75 @@
+import React, { useState, useEffect } from "react";
+import { getAllHomevisit } from "./routes/homevisit.routes";
+
+import AddHomevisit from "./AddHomevisit"
+import UpdateHomevisit from "./UpdateHomevisit";
+import { homevisitStatus } from "./constants";
+
+const Homevisit = () => {
+    const [homevisitList, setHomevisitList] = useState([])
+    const [selected, setSelected] = useState(null)
+    const [showAddNew, setShowAddNew] = useState(false)
+
+    console.log(homevisitList)
+
+    useEffect(() => {
+        getHomevisits()
+    }, [])
+
+    const getHomevisits = () => {
+        getAllHomevisit().then((result) => {
+            setHomevisitList(result)
+        })
+    }
+
+    const onUpdate = () => {
+        getHomevisits()
+    }
+
+    const onAddNew = () => {
+        setShowAddNew(false)
+        getHomevisits()
+    }
+
+    return (
+        <div>
+            <h2>Homevisits</h2>
+            <h3>Click on a homevisit to update its information </h3>
+            <div className="d-flex flex-row">
+                <table className="table w-50">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Staff</th>
+                            <th>Dog</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {homevisitList.map((homevisit, index) => (
+                            <tr key={homevisit.id} onClick={() => setSelected(index)}>
+                                <td>{homevisit.id}</td>
+                                <td>{homevisit.first_name + " " + homevisit.last_name}</td>
+                                <td>{homevisit.dog}</td>
+                                <td>{homevisitStatus[homevisit.status]}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+                {selected !== null ? (
+                    <UpdateHomevisit key={homevisitList[selected].id} homevisit={homevisitList[selected]} onUpdate={onUpdate} />
+                ) : null}
+            </div>
+            <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Homevisit</button>
+            {showAddNew ? (
+                <div>
+                    <AddHomevisit onAddNew={onAddNew}/>
+                    <button className="btn btn-danger m-2" onClick={() => setShowAddNew(false)}>Cancel</button>
+                </div>
+            ) : null}
+        </div>
+    )
+}
+
+export default Homevisit
