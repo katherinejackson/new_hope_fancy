@@ -14,7 +14,7 @@ const UpdateStaff = ({ staff, onUpdate }) => {
     const [error, setError] = useState(false)
 
     const updateStaff = () => {
-        if (fname && lname && parsePhoneNumber(phone, 'CA').isValid()) {
+        if (fName && lName && parsePhoneNumber(phone, 'CA').isValid()) {
             UpdateStaffAPI({
                 id: id,
                 firstName: fName,

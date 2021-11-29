@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Alert } from "react-bootstrap";
 
 import { updateDog as UpdateDogAPI } from "./routes/dog.routes"
 import { dogStatus } from "./constants";
@@ -10,25 +11,34 @@ const UpdateDog = ({ dog, onUpdate }) => {
     const [age, setAge] = useState(dog.age || "")
     const [gender, setGender] = useState(dog.gender || "")
     const [status, setStatus] = useState(dog.status || 0)
+    const [error, setError] = useState(false)
 
     const updateDog = () => {
-        UpdateDogAPI({
-            id: id,
-            name: name,
-            breed: breed,
-            age: age,
-            gender: gender,
-            status: status,
-        }).then(() => {
-            onUpdate()
-        }).catch((err) => {
-            console.log('error', err)
-        })
+        if (id && name) {
+            UpdateDogAPI({
+                id: id,
+                name: name,
+                breed: breed,
+                age: age,
+                gender: gender,
+                status: status,
+            }).then(() => {
+                onUpdate()
+            }).catch((err) => {
+                console.log('error', err)
+            })
+        } else {
+            setError(true)
+        }
+
     }
 
     return (
         <div className="m-5">
             <h2>Update Dog</h2>
+
+            {error ? <Alert variant='danger'>Dog must have name</Alert> : null}
+
             <div className="col">
                 <div className="row">
                     <label>Name:</label>

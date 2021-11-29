@@ -50,7 +50,8 @@ const UpdateHomevisit = ({ homevisit, onUpdate }) => {
 
                 <div className="row">
                     <label>Staff:</label>
-                    <select id="staffSelect" type="text" defaultValue={staff} onChange={(e) => setStaff(e?.target?.value)}>
+                    <select id="staffSelect" type="text" defaultValue={staff.id} onChange={(e) => setStaff(e?.target?.value)}>
+                        <option value={null}>None</option>
                         {staffList.map(staff => (
                             <option value={staff.id} key={staff.id}>{staff.first_name + " " + staff.last_name}</option>
                         ))}

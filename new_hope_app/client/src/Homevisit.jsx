@@ -10,8 +10,6 @@ const Homevisit = () => {
     const [selected, setSelected] = useState(null)
     const [showAddNew, setShowAddNew] = useState(false)
 
-    console.log(homevisitList)
-
     useEffect(() => {
         getHomevisits()
     }, [])
@@ -61,13 +59,14 @@ const Homevisit = () => {
                     <UpdateHomevisit key={homevisitList[selected].id} homevisit={homevisitList[selected]} onUpdate={onUpdate} />
                 ) : null}
             </div>
-            <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Homevisit</button>
+            
             {showAddNew ? (
                 <div>
-                    <AddHomevisit onAddNew={onAddNew}/>
-                    <button className="btn btn-danger m-2" onClick={() => setShowAddNew(false)}>Cancel</button>
+                    <AddHomevisit onAddNew={onAddNew} setShowAddNew={setShowAddNew}/>
                 </div>
-            ) : null}
+            ) : (
+                <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Homevisit</button>
+            )}
         </div>
     )
 }

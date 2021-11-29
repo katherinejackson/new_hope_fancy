@@ -17,10 +17,17 @@ const Dog = () => {
     const getDogs = () => {
         getAllDogs().then((result) => {
             setDogList(result)
+        }).catch(err => {
+            console.log(err)
         })
     }
 
     const onUpdate = () => {
+        getDogs()
+    }
+
+    const onAddNew = () => {
+        setShowAddNew(false)
         getDogs()
     }
 
@@ -55,13 +62,13 @@ const Dog = () => {
                 </table>
 
                 {selected !== null ? (
-                    <UpdateDog key={dogList[selected].id} dog={dogList[selected]} onUpdate={onUpdate}/>
+                    <UpdateDog key={dogList[selected].id} dog={dogList[selected]} onUpdate={onUpdate} />
                 ) : null}
             </div>
             <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Dog</button>
             {showAddNew ? (
                 <div>
-                    <AddDog />
+                    <AddDog onAddNew={onAddNew} />
                     <button className="btn btn-danger m-2" onClick={() => setShowAddNew(false)}>Cancel</button>
                 </div>
             ) : null}
