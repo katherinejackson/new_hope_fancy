@@ -12,7 +12,6 @@ const getAllStaff = async () => {
   }
   
   const addStaff = async (data) => {
-    console.log('here1')
     const response = await fetch('http://localhost:8080/new_staff', {
       method: 'POST', 
       mode: 'cors', 
@@ -28,7 +27,7 @@ const getAllStaff = async () => {
 
   const updateStaff = async (data) => {
     const response = await fetch('http://localhost:8080/update_staff', {
-      method: 'POST', 
+      method: 'PUT', 
       mode: 'cors', 
       credentials: 'same-origin', 
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},

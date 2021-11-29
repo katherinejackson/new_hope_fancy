@@ -27,7 +27,7 @@ const getAllHomevisit = async () => {
 
   const updateHomevisit = async (data) => {
     const response = await fetch('http://localhost:8080/update_homevisit', {
-      method: 'POST', 
+      method: 'PUT', 
       mode: 'cors', 
       credentials: 'same-origin', 
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},

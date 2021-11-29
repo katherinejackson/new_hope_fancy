@@ -30,7 +30,7 @@ const getAllDogs = async () => {
   const updateDog = async (data) => {
     try {
       const response = await fetch('http://localhost:8080/update_dog', {
-        method: 'POST', 
+        method: 'PUT', 
         mode: 'cors', 
         credentials: 'same-origin', 
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},

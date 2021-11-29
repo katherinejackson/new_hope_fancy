@@ -140,7 +140,7 @@ app.get("/homevisit_list", function(req, res) {
     });
 });
 
-app.post("/update_dog", function(req, res) {
+app.put("/update_dog", function(req, res) {
     const parsedReq = JSON.parse(Object.keys(req.body)[0])
     var id = parsedReq.id;
     var name = parsedReq.name || "";
@@ -164,7 +164,7 @@ app.post("/update_dog", function(req, res) {
     
 }); 
 
-app.post("/update_staff", function(req, res) {
+app.put("/update_staff", function(req, res) {
     const parsedReq = JSON.parse(Object.keys(req.body)[0])
     var id = parsedReq.id;
     var lastName = parsedReq.lastName;
@@ -186,7 +186,7 @@ app.post("/update_staff", function(req, res) {
     
 }); 
 
-app.post("/update_homevisit", function(req, res) {
+app.put("/update_homevisit", function(req, res) {
     const parsedReq = JSON.parse(Object.keys(req.body)[0])
     var id = parsedReq.id;
     var dog = parsedReq.dog;
