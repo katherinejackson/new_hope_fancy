@@ -1,28 +1,49 @@
 version: "3.7"
 
+x-common-variables: &common-variables
+  REACT_APP_SERVER_PORT: 8000
+
 services:
-  app:
-    image: node:12-alpine
-    command: sh -c "npm start"
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - partd:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: newhope
+      
+  server:
+    build: ./server
+    container_name: node_server_container
+    depends_on:
+      - mysql
+    ports:
+      - 8080:8080
+    volumes:
+      - ./server:/app
+    command: npm start
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: newhope
+      PMA_HOST: mysql
+
+  client:
+    build: ./client
+    container_name: client_container
+    environment:
+      REACT_APP_SERVER_PORT: 8000
+      NODE_PATH: src
+      CHOKIDAR_USEPOLLING: "true"
     ports:
       - 3000:3000
-    working_dir: /app
     volumes:
-      - ./:/app
-    # environment:
-    #   MYSQL_HOST: mysql
-    #   MYSQL_USER: root
-    #   MYSQL_PASSWORD: secret
-    #   MYSQL_DB: newhope
-    #   PMA_HOST: mysql
+      - ./client/src:/app/src
+    links:
+      - server
+    command: npm start
 
-#   mysql:
-#     image: mysql:5.7
-#     volumes:
-#       - parta:/var/lib/mysql
-#     environment:
-#       MYSQL_ROOT_PASSWORD: secret
-#       MYSQL_DATABASE: newhope
-
-# volumes:
-#   parta:
+volumes:
+  partd:
