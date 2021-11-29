@@ -23,6 +23,11 @@ const Staff = () => {
         getStaff()
     }
 
+    const onAddNew = () => {
+        setShowAddNew(false)
+        getStaff()
+    }
+
     return (
         <div>
             <h2>Staff</h2>
@@ -53,13 +58,14 @@ const Staff = () => {
                     <UpdateStaff key={staffList[selected].id} staff={staffList[selected]} onUpdate={onUpdate} />
                 ) : null}
             </div>
-            <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Staff</button>
+
             {showAddNew ? (
                 <div>
-                    <AddStaff />
-                    <button className="btn btn-danger m-2" onClick={() => setShowAddNew(false)}>Cancel</button>
+                    <AddStaff onAddNew={onAddNew} setShowAddNew={setShowAddNew} />
                 </div>
-            ) : null}
+            ) : (
+                <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Staff</button>
+            )}
         </div>
     )
 }
