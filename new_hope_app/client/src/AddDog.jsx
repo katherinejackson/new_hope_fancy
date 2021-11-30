@@ -3,7 +3,7 @@ import { Alert } from "react-bootstrap";
 
 import { addDog as AddDogAPI } from "./routes/dog.routes"
 
-const AddDog = ({ onAddNew }) => {
+const AddDog = ({ onAddNew, setShowAddNew }) => {
     const [name, setName] = useState("")
     const [breed, setBreed] = useState("")
     const [age, setAge] = useState("")
@@ -41,7 +41,6 @@ const AddDog = ({ onAddNew }) => {
                     <input id="breed" type="text" defaultValue={breed} onChange={(e) => setBreed(e.target.value)} />
                 </div>
 
-
                 <div className="row">
                     <label>Age:</label>
                     <input id="age" type="text" defaultValue={age} onChange={(e) => setAge(e.target.value)} />
@@ -53,6 +52,7 @@ const AddDog = ({ onAddNew }) => {
                 </div>
 
                 <button className="btn btn-info m-2" onClick={addDog}>Submit</button>
+                <button className="btn btn-danger m-2" onClick={() => setShowAddNew(false)}>Cancel</button>
             </div>
 
         </div>

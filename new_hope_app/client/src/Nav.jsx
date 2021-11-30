@@ -8,7 +8,7 @@ const Nav = ({ setMode }) => {
                 <BootNav>
                     <Row>
                         <Col>
-                            <BootNav.Item role="button" class="cursor-pointer" onClick={() => setMode(null)}>Home</BootNav.Item>
+                            <BootNav.Item role="button" onClick={() => setMode(null)}>Home</BootNav.Item>
                         </Col>
                         <Col>
                             <BootNav.Item role="button" onClick={() => setMode('dog')}>Dogs</BootNav.Item>

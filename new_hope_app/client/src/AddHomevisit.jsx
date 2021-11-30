@@ -43,7 +43,7 @@ const AddHomevisit = ({ onAddNew, setShowAddNew }) => {
     }
 
     return (
-        <div>
+        <div className="d-flex flex-column">
             <h2>Add a New HomeVisit</h2>
 
             {error ? <Alert variant='danger'>You must select a dog</Alert> : null}

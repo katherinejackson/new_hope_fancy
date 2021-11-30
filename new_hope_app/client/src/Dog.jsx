@@ -67,8 +67,7 @@ const Dog = () => {
             <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Dog</button>
             {showAddNew ? (
                 <div>
-                    <AddDog onAddNew={onAddNew} />
-                    <button className="btn btn-danger m-2" onClick={() => setShowAddNew(false)}>Cancel</button>
+                    <AddDog onAddNew={onAddNew} setShowAddNew={setShowAddNew}/>
                 </div>
             ) : null}
         </div>
