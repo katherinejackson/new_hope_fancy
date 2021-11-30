@@ -37,7 +37,6 @@ const Homevisit = () => {
                 <table className="table w-50">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Staff</th>
                             <th>Dog</th>
                             <th>Status</th>
@@ -45,9 +44,8 @@ const Homevisit = () => {
                     </thead>
                     <tbody>
                         {homevisitList.map((homevisit, index) => (
-                            <tr key={homevisit.id} onClick={() => setSelected(index)}>
-                                <td>{homevisit.id}</td>
-                                <td>{homevisit.first_name + " " + homevisit.last_name}</td>
+                            <tr key={homevisit._id} onClick={() => setSelected(index)}>
+                                <td>{homevisit.staff}</td>
                                 <td>{homevisit.dog}</td>
                                 <td>{homevisitStatus[homevisit.status]}</td>
                             </tr>
@@ -56,7 +54,7 @@ const Homevisit = () => {
                 </table>
 
                 {selected !== null ? (
-                    <UpdateHomevisit key={homevisitList[selected].id} homevisit={homevisitList[selected]} onUpdate={onUpdate} />
+                    <UpdateHomevisit key={homevisitList[selected]._id} homevisit={homevisitList[selected]} onUpdate={onUpdate} />
                 ) : null}
             </div>
             

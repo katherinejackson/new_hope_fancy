@@ -6,9 +6,9 @@ import { getAllDogs } from "./routes/dog.routes";
 import { getAllStaff } from "./routes/staff.routes";
 
 const UpdateHomevisit = ({ homevisit, onUpdate }) => {
-    const id = homevisit.id
-    const [dog, setDog] = useState(homevisit.dogid)
-    const [staff, setStaff] = useState(homevisit.staffid)
+    const id = homevisit._id
+    const [dog, setDog] = useState(homevisit.dog)
+    const [staff, setStaff] = useState(homevisit.staff)
     const [status, setStatus] = useState(homevisit.status)
     const [dogList, setDogList] = useState([])
     const [staffList, setStaffList] = useState([])
@@ -53,7 +53,7 @@ const UpdateHomevisit = ({ homevisit, onUpdate }) => {
                     <select id="staffSelect" type="text" defaultValue={staff.id} onChange={(e) => setStaff(e?.target?.value)}>
                         <option value={null}>None</option>
                         {staffList.map(staff => (
-                            <option value={staff.id} key={staff.id}>{staff.first_name + " " + staff.last_name}</option>
+                            <option value={staff.first_name + " " + staff.last_name} key={staff._id}>{staff.first_name + " " + staff.last_name}</option>
                         ))}
                     </select>
                 </div>
@@ -62,7 +62,7 @@ const UpdateHomevisit = ({ homevisit, onUpdate }) => {
                     <label>Dog:</label>
                     <select id="dogSelect" type="text" defaultValue={dog} onChange={(e) => setDog(e?.target?.value)}>
                         {dogList.map(dog => (
-                            <option value={dog.id} key={dog.id}>{dog.name}</option>
+                            <option value={dog.name} key={dog._id}>{dog.name}</option>
                         ))}
                     </select>
                 </div>

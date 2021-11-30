@@ -5,7 +5,7 @@ import { updateDog as UpdateDogAPI } from "./routes/dog.routes"
 import { dogStatus } from "./constants";
 
 const UpdateDog = ({ dog, onUpdate }) => {
-    const id = dog.id
+    const id = dog._id
     const [name, setName] = useState(dog.name || "")
     const [breed, setBreed] = useState(dog.breed || "")
     const [age, setAge] = useState(dog.age || "")

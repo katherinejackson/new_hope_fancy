@@ -36,7 +36,6 @@ const Staff = () => {
                 <table className="table w-50">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Phone Number</th>
@@ -44,8 +43,7 @@ const Staff = () => {
                     </thead>
                     <tbody>
                         {staffList.map((staff, index) => (
-                            <tr key={staff.id} onClick={() => setSelected(index)}>
-                                <td>{staff.id}</td>
+                            <tr key={staff._id} onClick={() => setSelected(index)}>
                                 <td>{staff.first_name}</td>
                                 <td>{staff.last_name}</td>
                                 <td>{staff.phone}</td>
@@ -55,7 +53,7 @@ const Staff = () => {
                 </table>
 
                 {selected !== null ? (
-                    <UpdateStaff key={staffList[selected].id} staff={staffList[selected]} onUpdate={onUpdate} />
+                    <UpdateStaff key={staffList[selected]._id} staff={staffList[selected]} onUpdate={onUpdate} />
                 ) : null}
             </div>
 

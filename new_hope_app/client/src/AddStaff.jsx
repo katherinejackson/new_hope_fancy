@@ -23,7 +23,6 @@ const AddStaff = ({ onAddNew, setShowAddNew }) => {
         } else {
             setError(true)
         }
-
     }
 
     return (
@@ -44,7 +43,7 @@ const AddStaff = ({ onAddNew, setShowAddNew }) => {
 
             <div className="row">
                 <label>Phone:</label>
-                <PhoneInput id="phone" defaultValue={phone} onChange={(e) => setPhone(e)} />
+                <PhoneInput id="phone" value={phone} onChange={(e) => setPhone(e)} />
             </div>
 
             <button className="btn btn-info m-2" onClick={addStaff}>Submit</button>

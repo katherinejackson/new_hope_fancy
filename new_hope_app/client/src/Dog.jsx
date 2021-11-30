@@ -39,7 +39,6 @@ const Dog = () => {
                 <table className="table w-75">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Breed</th>
                             <th>Age</th>
@@ -49,8 +48,7 @@ const Dog = () => {
                     </thead>
                     <tbody>
                         {dogList.map((dog, index) => (
-                            <tr key={dog.id} onClick={() => setSelected(index)}>
-                                <td>{dog.id}</td>
+                            <tr key={dog._id} onClick={() => setSelected(index)}>
                                 <td>{dog.name}</td>
                                 <td>{dog.breed}</td>
                                 <td>{dog.age}</td>
@@ -62,7 +60,7 @@ const Dog = () => {
                 </table>
 
                 {selected !== null ? (
-                    <UpdateDog key={dogList[selected].id} dog={dogList[selected]} onUpdate={onUpdate} />
+                    <UpdateDog key={dogList[selected]._id} dog={dogList[selected]} onUpdate={onUpdate} />
                 ) : null}
             </div>
             <button className="btn btn-info m-2" onClick={() => setShowAddNew(true)}>Add New Dog</button>

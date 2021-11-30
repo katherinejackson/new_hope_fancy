@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row } from 'react-bootstrap'
 
 import Homevisit from './Homevisit';
 import Nav from './Nav';
@@ -10,7 +10,6 @@ import Staff from './Staff';
 
 const App = () => {
   const [mode, setMode] = useState(null)
-
 
   return (
     <Container>

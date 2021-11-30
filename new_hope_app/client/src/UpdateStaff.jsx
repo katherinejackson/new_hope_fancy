@@ -7,7 +7,7 @@ import { Alert } from "react-bootstrap";
 import { updateStaff as UpdateStaffAPI } from "./routes/staff.routes"
 
 const UpdateStaff = ({ staff, onUpdate }) => {
-    const id = staff.id
+    const id = staff._id
     const [fName, setFName] = useState(staff.first_name)
     const [lName, setLName] = useState(staff.last_name)
     const [phone, setPhone] = useState(staff.phone)
@@ -49,7 +49,7 @@ const UpdateStaff = ({ staff, onUpdate }) => {
 
                 <div className="row">
                     <label>Phone:</label>
-                    <PhoneInput id="phone" defaultValue={phone} onChange={(e) => setPhone(e)} />
+                    <PhoneInput id="phone" value={phone} onChange={(e) => setPhone(e)} />
                 </div>
 
                 <button className="btn btn-info m-2" onClick={updateStaff}>Submit</button>
