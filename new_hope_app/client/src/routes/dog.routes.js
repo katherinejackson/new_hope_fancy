@@ -43,7 +43,24 @@ const getAllDogs = async () => {
     } catch (e) {
       console.log(e)
     }
+  }
 
+  const deleteDog = async (data) => {
+    try {
+      const response = await fetch('http://localhost:8080/delete_dog', {
+        method: 'DELETE', 
+        mode: 'cors', 
+        credentials: 'same-origin', 
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        redirect: 'follow', 
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(data), 
+      });
+    
+      return response; 
+    } catch (e) {
+      console.log(e)
+    }
   }
   
-  export {addDog, getAllDogs, updateDog}
+  export {addDog, getAllDogs, updateDog, deleteDog}

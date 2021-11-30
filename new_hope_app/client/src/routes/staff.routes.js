@@ -38,7 +38,21 @@ const getAllStaff = async () => {
   
     return response; 
   }
+
+  const deleteStaff = async (data) => {
+    const response = await fetch('http://localhost:8080/delete_staff', {
+      method: 'DELETE', 
+      mode: 'cors', 
+      credentials: 'same-origin', 
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      redirect: 'follow', 
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data), 
+    });
   
-  export {addStaff, getAllStaff, updateStaff}
+    return response; 
+  }
+  
+  export {addStaff, getAllStaff, updateStaff, deleteStaff}
   
   

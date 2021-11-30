@@ -148,7 +148,7 @@ app.put("/update_dog", function (req, res) {
     var gender = parsedReq.gender || "";
     var status = parsedReq.status || 0;
 
-    const listingQuery = { _id: ObjectId(id)};
+    const listingQuery = { _id: ObjectId(id) };
     const updates = {
         $set: {
             name: name,
@@ -170,14 +170,14 @@ app.put("/update_dog", function (req, res) {
         })
 });
 
-app.put("/update_staff", function(req, res) {
+app.put("/update_staff", function (req, res) {
     const parsedReq = JSON.parse(Object.keys(req.body)[0])
     var id = parsedReq.id;
     var lastName = parsedReq.lastName;
     var firstName = parsedReq.firstName;
     var phone = parsedReq.phone;
 
-    const listingQuery = { _id: ObjectId(id)};
+    const listingQuery = { _id: ObjectId(id) };
     const updates = {
         $set: {
             first_name: firstName,
@@ -196,16 +196,16 @@ app.put("/update_staff", function(req, res) {
             }
         })
 
-}); 
+});
 
-app.put("/update_homevisit", function(req, res) {
+app.put("/update_homevisit", function (req, res) {
     const parsedReq = JSON.parse(Object.keys(req.body)[0])
     var id = parsedReq.id;
     var dog = parsedReq.dog;
     var staff = parsedReq.staff;
     var status = parsedReq.status;
 
-    const listingQuery = { _id: ObjectId(id)};
+    const listingQuery = { _id: ObjectId(id) };
     const updates = {
         $set: {
             dog: dog,
@@ -224,7 +224,61 @@ app.put("/update_homevisit", function(req, res) {
             }
         })
 
-}); 
+});
+
+app.delete("/delete_dog", function (req, res) {
+    const parsedReq = JSON.parse(Object.keys(req.body)[0])
+    var id = parsedReq.id;
+
+    const listingQuery = { _id: ObjectId(id) };
+
+    conn.collection("dogs")
+        .deleteOne(listingQuery, function (err, _results) {
+            if (err) {
+                console.log("error")
+            } else {
+                console.log(_results)
+                res.status(204).send();
+            }
+        })
+});
+
+app.delete("/delete_staff", function (req, res) {
+    const parsedReq = JSON.parse(Object.keys(req.body)[0])
+    var id = parsedReq.id;
+
+    const listingQuery = { _id: ObjectId(id) };
+
+    conn.collection("staff")
+        .deleteOne(listingQuery, function (err, _results) {
+            if (err) {
+                console.log("error")
+            } else {
+                console.log(_results)
+                res.status(204).send();
+            }
+        })
+
+});
+
+app.delete("/delete_homevisit", function (req, res) {
+    const parsedReq = JSON.parse(Object.keys(req.body)[0])
+    var id = parsedReq.id;
+
+    const listingQuery = { _id: ObjectId(id) };
+
+
+    conn.collection("homevisits")
+        .deleteOne(listingQuery, function (err, _results) {
+            if (err) {
+                console.log("error")
+            } else {
+                console.log(_results)
+                res.status(204).send();
+            }
+        })
+
+});
 
 app.listen(PORT, () =>
     console.log(`Server running on http://localhost:${PORT}`)

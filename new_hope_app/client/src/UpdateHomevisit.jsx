@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 
-import { updateHomevisit as UpdateHomevisitAPI } from "./routes/homevisit.routes"
+import { updateHomevisit as UpdateHomevisitAPI, deleteHomevisit as DeleteHomevisitAPI } from "./routes/homevisit.routes"
 import { homevisitStatus } from "./constants";
 import { getAllDogs } from "./routes/dog.routes";
 import { getAllStaff } from "./routes/staff.routes";
@@ -24,6 +25,16 @@ const UpdateHomevisit = ({ homevisit, onUpdate }) => {
             dog: dog,
             staff: staff,
             status: status,
+        }).then(() => {
+            onUpdate()
+        }).catch((err) => {
+            console.log('error', err)
+        })
+    }
+
+    const deleteHomevisit = () => {
+        DeleteHomevisitAPI({
+            id: id,
         }).then(() => {
             onUpdate()
         }).catch((err) => {
@@ -76,7 +87,8 @@ const UpdateHomevisit = ({ homevisit, onUpdate }) => {
                     </select>
                 </div>
 
-                <button className="btn btn-info m-2" onClick={updateHomevisit}>Submit</button>
+                <Button variant="success" onClick={updateHomevisit}>Submit</Button>
+                <Button variant="danger" onClick={deleteHomevisit}>Delete Homevisit</Button>
             </div>
 
         </div>

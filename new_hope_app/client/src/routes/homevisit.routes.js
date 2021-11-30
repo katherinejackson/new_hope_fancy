@@ -38,5 +38,19 @@ const getAllHomevisit = async () => {
   
     return response; 
   }
+
+  const deleteHomevisit = async (data) => {
+    const response = await fetch('http://localhost:8080/delete_homevisit', {
+      method: 'DELETE', 
+      mode: 'cors', 
+      credentials: 'same-origin', 
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      redirect: 'follow', 
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data), 
+    });
   
-  export {addHomevisit, getAllHomevisit, updateHomevisit}
+    return response; 
+  }
+  
+  export {addHomevisit, getAllHomevisit, updateHomevisit, deleteHomevisit}

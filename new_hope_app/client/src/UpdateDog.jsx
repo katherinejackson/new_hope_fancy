@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Alert } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 
-import { updateDog as UpdateDogAPI } from "./routes/dog.routes"
+import { updateDog as UpdateDogAPI, deleteDog as DeleteDogAPI } from "./routes/dog.routes"
 import { dogStatus } from "./constants";
 
 const UpdateDog = ({ dog, onUpdate }) => {
@@ -30,7 +30,11 @@ const UpdateDog = ({ dog, onUpdate }) => {
         } else {
             setError(true)
         }
+    }
 
+    const deleteDog = () => {
+        DeleteDogAPI({ id: id })
+            .then(() => onUpdate())
     }
 
     return (
@@ -64,13 +68,15 @@ const UpdateDog = ({ dog, onUpdate }) => {
                 <div className="row">
                     <label>Status:</label>
                     <select id="status" type="text" defaultValue={status} onChange={(e) => setStatus(e.target.value)}>
-                    {Object.keys(dogStatus).map(status => (
-                        <option value={status} key={`status-${status}`}>{dogStatus[status]}</option>
-                    ))}
+                        {Object.keys(dogStatus).map(status => (
+                            <option value={status} key={`status-${status}`}>{dogStatus[status]}</option>
+                        ))}
                     </select>
                 </div>
 
-                <button className="btn btn-info m-2" onClick={updateDog}>Submit</button>
+                
+                <Button variant="success" onClick={updateDog}>Submit</Button>
+                <Button variant="danger" onClick={deleteDog}>Delete Dog</Button>
             </div>
 
         </div>

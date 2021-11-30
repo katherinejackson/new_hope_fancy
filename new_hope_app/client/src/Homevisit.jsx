@@ -22,6 +22,7 @@ const Homevisit = () => {
 
     const onUpdate = () => {
         getHomevisits()
+        setSelected(null)
     }
 
     const onAddNew = () => {

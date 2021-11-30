@@ -46,7 +46,7 @@ const AddHomevisit = ({ onAddNew, setShowAddNew }) => {
             <select id="staffSelect" type="text" defaultValue={staff} onChange={(e) => setStaff(e?.target?.value)}>
                 <option value={null} key="nullOp">None</option>
                 {staffList.map(staff => (
-                    <option value={staff.id} key={staff.id}>{staff.first_name + " " + staff.last_name}</option>
+                    <option value={staff} key={staff._id}>{staff.first_name + " " + staff.last_name}</option>
                 ))}
             </select>
 
@@ -54,7 +54,7 @@ const AddHomevisit = ({ onAddNew, setShowAddNew }) => {
             <select id="dogSelect" type="text" defaultValue={dog} onChange={(e) => setDog(e?.target?.value)}>
                 <option value="" key="nullOp">Please Select a Dog</option>
                 {dogList.map(dog => (
-                    <option value={dog.id} key={dog.id}>{dog.name}</option>
+                    <option value={dog.id} key={dog._id}>{dog.name}</option>
                 ))}
             </select>
 

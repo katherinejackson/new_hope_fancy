@@ -21,6 +21,7 @@ const Staff = () => {
 
     const onUpdate = () => {
         getStaff()
+        setSelected(null)
     }
 
     const onAddNew = () => {
