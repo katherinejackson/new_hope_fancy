@@ -37,14 +37,3 @@ test('renders add new staff button', async () => {
 
     expect(screen.getByText(/Add New Staff/i)).toBeInTheDocument();
 });
-
-// test('displays update component on staff click', async () => {
-//     render(<Staff />);
-
-//     await waitFor(() => screen.getByText(/first/i).toBeInTheDocument)
-//         .then(
-//             userEvent.click(screen.getByText(/first/i))
-//         );
-
-//     await waitFor(() => expect(screen.getByText(/Update Staff/i)).toBeInTheDocument());
-// })

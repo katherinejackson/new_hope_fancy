@@ -45,9 +45,9 @@ const Staff = () => {
                     <tbody>
                         {staffList.map((staff, index) => (
                             <tr key={staff._id} onClick={() => setSelected(index)}>
-                                <td>{staff.first_name}</td>
-                                <td>{staff.last_name}</td>
-                                <td>{staff.phone}</td>
+                                <td role="button">{staff.first_name}</td>
+                                <td role="button">{staff.last_name}</td>
+                                <td role="button">{staff.phone}</td>
                             </tr>
                         ))}
                     </tbody>

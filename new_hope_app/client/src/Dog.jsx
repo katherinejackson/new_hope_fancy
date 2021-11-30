@@ -50,11 +50,11 @@ const Dog = () => {
                     <tbody>
                         {dogList.map((dog, index) => (
                             <tr key={dog._id} onClick={() => setSelected(index)}>
-                                <td>{dog.name}</td>
-                                <td>{dog.breed}</td>
-                                <td>{dog.age}</td>
-                                <td>{dog.gender}</td>
-                                <td>{dogStatus[dog.status]}</td>
+                                <td role="button">{dog.name}</td>
+                                <td role="button">{dog.breed}</td>
+                                <td role="button">{dog.age}</td>
+                                <td role="button">{dog.gender}</td>
+                                <td role="button">{dogStatus[dog.status]}</td>
                             </tr>
                         ))}
                     </tbody>

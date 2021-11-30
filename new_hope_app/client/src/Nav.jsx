@@ -1,16 +1,26 @@
 import React from "react"
-import { Navbar, Nav as BootNav, Container} from 'react-bootstrap'
+import { Navbar, Nav as BootNav, Container, Row, Col } from 'react-bootstrap'
 
 const Nav = ({ setMode }) => {
     return (
         <Navbar bg="light" expand="lg">
             <Container>
-                    <BootNav className="me-auto">
-                        <BootNav.Item onClick={() => setMode(null)}>Home</BootNav.Item>
-                        <BootNav.Item onClick={() => setMode('dog')}>Dogs</BootNav.Item>
-                        <BootNav.Item onClick={() => setMode('staff')}>Staff</BootNav.Item>
-                        <BootNav.Item onClick={() => setMode('homevisit')}>Homevisit</BootNav.Item>
-                    </BootNav>
+                <BootNav>
+                    <Row>
+                        <Col>
+                            <BootNav.Item role="button" class="cursor-pointer" onClick={() => setMode(null)}>Home</BootNav.Item>
+                        </Col>
+                        <Col>
+                            <BootNav.Item role="button" onClick={() => setMode('dog')}>Dogs</BootNav.Item>
+                        </Col>
+                        <Col>
+                            <BootNav.Item role="button" onClick={() => setMode('staff')}>Staff</BootNav.Item>
+                        </Col>
+                        <Col>
+                            <BootNav.Item role="button" onClick={() => setMode('homevisit')}>Homevisits</BootNav.Item>
+                        </Col>
+                    </Row>
+                </BootNav>
             </Container>
         </Navbar>
     )

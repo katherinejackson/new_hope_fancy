@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 
 import Homevisit from './Homevisit';
 import Nav from './Nav';
@@ -13,13 +13,15 @@ const App = () => {
 
   return (
     <Container>
-      <Row>
+      <Col>
+        <Row>
           <Nav setMode={setMode} />
-          {mode === 'dog'
-            ? <Dog /> : mode === 'staff'
-              ? <Staff /> : mode === 'homevisit'
-                ? <Homevisit /> : <Home />}
-      </Row>
+        </Row>
+        {mode === 'dog'
+          ? <Dog /> : mode === 'staff'
+            ? <Staff /> : mode === 'homevisit'
+              ? <Homevisit /> : <Home />}
+      </Col>
     </Container>
 
   );
