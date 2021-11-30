@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { parsePhoneNumber } from 'libphonenumber-js'
-import { Alert } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 
-import { updateStaff as UpdateStaffAPI } from "./routes/staff.routes"
+import { updateStaff as UpdateStaffAPI, deleteStaff as DeleteStaffAPI } from "./routes/staff.routes"
 
 const UpdateStaff = ({ staff, onUpdate }) => {
     const id = staff._id
@@ -14,7 +14,9 @@ const UpdateStaff = ({ staff, onUpdate }) => {
     const [error, setError] = useState(false)
 
     const updateStaff = () => {
-        if (fName && lName && parsePhoneNumber(phone, 'CA').isValid()) {
+        if (fName 
+            && lName 
+            && (!phone || parsePhoneNumber(phone, 'CA').isValid())) {
             UpdateStaffAPI({
                 id: id,
                 firstName: fName,
@@ -28,6 +30,16 @@ const UpdateStaff = ({ staff, onUpdate }) => {
         } else {
             setError(true)
         }
+    }
+
+    const deleteStaff = () => {
+        DeleteStaffAPI({
+            id: id,
+        }).then(() => {
+            onUpdate()
+        }).catch((err) => {
+            console.log('error', err)
+        })
     }
 
     return (
@@ -52,7 +64,8 @@ const UpdateStaff = ({ staff, onUpdate }) => {
                     <PhoneInput id="phone" value={phone} onChange={(e) => setPhone(e)} />
                 </div>
 
-                <button className="btn btn-info m-2" onClick={updateStaff}>Submit</button>
+                <Button variant="success" onClick={updateStaff}>Submit</Button>
+                <Button variant="danger" onClick={deleteStaff}>Delete Staff</Button>
             </div>
 
         </div>

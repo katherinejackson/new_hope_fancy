@@ -81,13 +81,14 @@ app.post("/new_staff", function (req, res) {
 
 app.post("/new_homevisit", function (req, res) {
     const parsedReq = JSON.parse(Object.keys(req.body)[0])
+    console.log(parsedReq)
     var dog = parsedReq.dog;
     var staff = parsedReq.staff;
 
     const newDocument = {
         dog: dog,
         staff: staff,
-        status: 0,
+        status: 1,
     };
 
     conn.collection('homevisits')

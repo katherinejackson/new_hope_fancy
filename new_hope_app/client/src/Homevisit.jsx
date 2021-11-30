@@ -46,7 +46,7 @@ const Homevisit = () => {
                     <tbody>
                         {homevisitList.map((homevisit, index) => (
                             <tr key={homevisit._id} onClick={() => setSelected(index)}>
-                                <td>{homevisit.staff}</td>
+                                <td>{homevisit.staff ? homevisit.staff : ''}</td>
                                 <td>{homevisit.dog}</td>
                                 <td>{homevisitStatus[homevisit.status]}</td>
                             </tr>

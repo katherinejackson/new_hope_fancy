@@ -13,7 +13,9 @@ const AddStaff = ({ onAddNew, setShowAddNew }) => {
     const [error, setError] = useState(false)
 
     const addStaff = () => {
-        if (fname && lname && parsePhoneNumber(phone, 'CA').isValid()) {
+        if (fname 
+            && lname 
+            && (!phone || parsePhoneNumber(phone, 'CA').isValid())) {
             setError(false)
             AddStaffAPI({
                 firstName: fname,

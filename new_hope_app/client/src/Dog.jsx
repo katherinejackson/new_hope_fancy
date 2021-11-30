@@ -24,6 +24,7 @@ const Dog = () => {
 
     const onUpdate = () => {
         getDogs()
+        setSelected(null)
     }
 
     const onAddNew = () => {
